@@ -4,12 +4,6 @@ This is HTML 5 datalist on steroids plus you can use it today. Introduction and 
 
 ### Current implementation of HTML 5 datalist. Hurting, but idea is right.
 The <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-button-element.html#the-datalist-element">HTML 5 datalist</a> is a much needed form element. What it basically does is provides two input points for one form element. One input point is of course the mouse, as with the current HTML select tag. The second input point being the keyboard in the form of autocomplete to find a element in the list. I say much needed because I think it is important to give a user two ways to select an item from a pre-defined data list. Autocomplete, although, more efficient of the two is not always intuitive for the "non-power-user". Not only that, even power users, will sometimes favor mouse selecting from a list if they are browsing with one hand or already performing a mouse action.
-<div class="graphic">
-    <img alt="Mouse click on datalist tag" src="images/html5-datalist-click.png" />
-    <span>Mouse clicking on HTML 5 datalist causes list to be displayed. Opera 10.1 screenshot.</span>
-    <img alt="Keyboard on datalist element causes list to be displayed. Opera 10.1 screenshot." src="images/html5-datalist-keyboard.png" />
-    <span>Keyboard on datalist element causes list to be displayed. Opera 10.1 screenshot.</span>
-</div>
 
 ### Problems with HTML 5 datalist as it currently stands
 <ul id="datalistProblems">
@@ -24,17 +18,6 @@ HTML 5 datalist in its current implementation by Opera is barely useful to the p
 
 ### The anecdote to the sickly HTML 5 datalist: Datalist class.
 Born out my need on some client work to provide a dual input form element I created the Datalist class. I created the initial version probably about 4 years ago. Since then I have loving curated it and all features and options come out of real world web application usage. The Datalist class requires [Prototype 1.6.1](http://prototypejs.org) and latest [Scriptaculous](http://script.aculo.us/) (just effects.js and controls.js).
-#### Screenshots of Datalist class.
-<div class="graphic">
-    <img alt="Normal select box behaviour. Click button and render the list" src="images/datalist-click.png" />
-    <span>Datalist class screenshot: Clicking on the button to the right of the form element renders the list</span>
-</div>
-<div class="graphic">
-    <img alt="Normal select box behaviour. Click button and render the list" src="images/datalist-autocomplete.png" />
-    <span>Datalist class screenshot: Autocomplete works as expected and matches anywhere on the string by default</span>
-</div>
-<div class="spacer">&nbsp;</div>
-
 
 ### Quick start guide
 Here are the basics for getting the Datalist class up and running locally. Clone the code from http://github.com/minimul/datalist. Then take the following HTML snippet and save it inside the root folder of the downloaded code calling it test.html.
