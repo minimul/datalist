@@ -1,0 +1,74 @@
+
+/* Only for demo page */
+div.codeBlock { border:1px dashed blue;padding:10px;margin:5px; }
+div.codeBlock code,select { display:block; }
+div.codeBlock span.left { float:left;width:15%;text-align:right;padding:6px; }
+div.codeBlock span.right { float:left;width:80%;padding:5px; }
+div.codeBlock span.inputLeft { float:left;width:45%; }
+div.codeBlock span.inputRight { float:right;width:45%; }
+div.spacingText { width:50%; }
+p.right { text-align:right; }
+label { background:yellow; }
+.spacer { clear:both; }
+
+/* Below is for code-highlighter.js */
+pre {
+        border: 1px solid black;
+        border-color: #BBB #DDD #DDD #BBB;
+        margin : 2em;
+        padding : 1em;
+        line-height: 1.5;
+        background:white ;
+        white-space:pre-wrap;
+        white-space:-moz-pre-wrap !important;
+        word-wrap:break-word;
+}
+
+code {
+        font-size: .9em;
+}
+
+.javascript .comment {
+color:green;
+}
+.javascript .string {
+color:teal;
+}
+.javascript .keywords {
+color : navy;
+}
+.javascript .global {
+color : blue;
+}
+.javascript .brackets {
+color : navy;
+}
+.css .comment {
+color : gray;
+}
+.css .properties {
+color : navy;
+}
+.css .selectors {
+color : maroon;
+font-weight : bold;
+}
+.css .units {
+color :red;
+}
+.css .urls {
+color :green;
+}
+.html .tag {
+color : purple;
+}
+.html .comment {
+color : gray;
+font-style: italic;
+}
+.html .string {
+color : navy;
+}
+.html .doctype {
+color : teal;
+}

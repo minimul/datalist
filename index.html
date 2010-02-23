@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Datalist class demo</title>
+    <link rel="stylesheet" href="lib/default.css" type="text/css" media="screen" />
+    <script src="lib/prototype.js" type="text/javascript"></script>
+    <script src="lib/effects.js" type="text/javascript"></script>
+    <script src="lib/controls.js" type="text/javascript"></script>
+    <script src="lib/data.js" type="text/javascript"></script>
+    <script src="lib/code_highlighter.js" type="text/javascript"></script>
+    <script src="datalist.js" type="text/javascript"></script>
+  <style>
+
+    div.autocomplete {
+      position: absolute;
+      width: 250px; /* will be adjusted by script.aculo.us */
+      background-color: white; border: 1px solid #888;
+      margin: 0px; padding: 0px;
+    }
+    div.autocomplete ul {
+      list-style-type: none; margin: 0px; padding: 0px;
+    }
+
+    div.autocomplete ul li.selected { background-color: #ff9;}
+    div.autocomplete ul li {
+      list-style-type: none; display: block;
+      font-family: sans-serif; font-size: small; color: #444;
+      margin: 0; padding: 0.1em;
+      line-height: 1.5em;
+      cursor: pointer;
+    }
+
+    div.dataListDisabledMsg  { position:absolute;padding:2px;background:#ff9;border:1px solid #888;font:400 8pt Tahoma; }
+    div.dataListActivityIndicator { width:6px;height:6px;background:red;overflow:hidden; }
+
+
+  </style>
+  <body>
+    <div id="parentContainer">
+      <h2>Datalist example page</h2>
+      <ul>
+        <li><a href="/html5-datalist.html">Datalist introduction and quick start</a></li>
+        <li><a href="/datalist-documentation.html">Datalist documentation</a></li>
+        <li><a href="lib/data.js" target="_blank">JSON used in this demo</a></li>
+      </ul>
+      <!-- Example 1 -->
+      <div class="codeBlock">
+        <h4 class="title">Example 1: Straight Datalist input with no dropdown button.</h4>
+        <pre><code class="javascript">
+          /*
+          Using datalist without a dropdown button is a useful alternative to Scriptaculous's Autocompleter.Local
+          as you can use JSON data rather than only a simple array. For example with Datalist you can
+          set your JSON like { 'NH|North east': 'New Hampshire' } and only show New Hampshire to the user but
+          also be able to use "NH|North east" inside of your application.
+          */
+          $('dataList1').datalist(states_json,{ noButton:true },{ width: '250px' });
+        </code></pre>
+        <label for="dataList1">Type here:</label><input type="text" id="dataList1" value="" />
+      </div>
+      <!-- Example 2 -->
+      <div class="codeBlock">
+        <h4 class="title">Example 2: Datalist input with dropdown button.</h4>
+        <pre><code class="javascript">
+        /*
+          The minChars means that autocomplete will not kick in til at least 4 characters have been typed in.
+          The disableButtonForIE: [6] means that if the dropdown button is hit IE 6 users will get the disabled message.
+          In the last argument we are setting the popup to be 250 pixels in width and height
+        */
+        $('dataList2').datalist(states_json,{ minChars:4,disableButtonForIE: [6] },
+                                            { width: '250px',height:'250px' });
+        </code></pre>
+        <label for="dataList2">Type or press dropdown button:</label><input type="text" id="dataList2" value="" /> <img src="dropdown_simple.gif" />
+      </div>
+      <!-- Example 3 -->
+      <div class="codeBlock">
+        <h4 class="title">Example 3 & 4: Datalist input with dropdown button with offsetLeft setting and demonstrate DatalistMouseWheel</h4>
+        <pre><code class="javascript">
+         /*
+            Element on left side. Purpose is demonstrate DatalistMouseWheel.
+         */
+         $('dataList3').datalist(scac_name_json,
+                                 {},
+                                 { width: '250px',height:'150px' });
+         /*
+            Element on the right side. This is similar to example 2; however, notice the offsetLeft setting is -300. This will move the
+            popup 300 pixels to the left. Also, for IE 6 users the shim to properly cover the SELECT tag has been set.
+         */
+         $('dataList4').datalist(scac_name_json,
+                                 { IE6Shim: true,update: 'alt_autocomplete_choices'},
+                                 { width: '250px',height:'150px',offsetLeft:-300 });
+
+         /*
+            The following code stops the main page from scrolling after you mousewheel to the bottom of the popup.
+            This behavior is on Webkit and IE browers but is not found in Firefox 3 and up.
+            From a Webkit or IE browser click on the dropdown button for the datalist element on the
+            left side and mouse wheel down to the bottom of the popup. If you keep mouse wheeling down you
+            will see that the entire page scrolls down. The datalist element on the right will not do this.
+            It is suggested that you always enable DatalistMouseWheel. The default argument is
+            "autocomplete_choices"; therefore you may just set DatalistMouseWheel() after the dom is loaded.
+         */
+         DatalistMouseWheel.on('alt_autocomplete_choices');
+        </code></pre>
+        <span class="inputLeft">
+        <label for="dataList3">Type or press dropdown button:</label><input type="text" id="dataList3" value="" /> <img src="dropdown_simple.gif" />
+         </span>
+        <span class="inputRight">
+        <label for="dataList4">Type or press dropdown button:</label><input type="text" id="dataList4" value="" /> <img src="dropdown_simple.gif" />
+<!--[if IE 6]>
+        <select>
+          <option value="Test select element for IE fix">Test select element for IE fix</option>
+        </select>
+<![endif]-->
+         </span>
+         <div class="spacer">&nbsp;</div>
+      </div>
+      <div class="spacingText">
+        <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla malesuada ultricies suscipit. Fusce dictum aliquet libero, non vestibulum felis pretium et. Suspendisse vitae arcu metus. Curabitur sit amet neque sit amet ligula semper elementum. Nunc ut dui sit amet felis laoreet ornare. Proin accumsan eros et risus hendrerit sed ultrices lectus rutrum. Ut sed elit non nibh ullamcorper molestie quis in enim. Curabitur ultrices feugiat elit, sodales laoreet sem dignissim et. Donec ornare arcu velit. In adipiscing, ipsum a ullamcorper rutrum, nisi mi semper magna, vel adipiscing sem mauris sit amet dolor. Nunc interdum, augue a blandit aliquam, dui est volutpat ipsum, eu sodales sapien mauris ut libero. Nullam laoreet pharetra ornare. Curabitur laoreet, neque a imperdiet faucibus, ipsum leo ullamcorper leo, id facilisis lectus leo vel urna. Sed vitae hendrerit mauris. Nulla viverra ligula sed mi consectetur dapibus.
+        </p>
+        <p>
+        Vestibulum interdum, elit vitae tincidunt auctor, massa dui ultrices risus, quis tristique metus libero at odio. Donec felis purus, adipiscing eget ultricies vel, placerat ac nulla. Fusce pellentesque nulla in mauris vestibulum fermentum ac at metus. Praesent convallis urna at ligula posuere laoreet. Nam et dui nec dolor feugiat consectetur. Suspendisse pharetra vestibulum egestas. Vestibulum non dolor id libero adipiscing feugiat at non turpis. Suspendisse elit massa, vehicula sit amet porta cursus, laoreet ac massa. Quisque et enim tellus. Nunc tincidunt varius diam ut scelerisque. Maecenas sit amet lacus enim, vitae imperdiet urna. Morbi vitae augue imperdiet ante aliquam porta et et sem. Sed non lorem quis diam pellentesque accumsan in sit amet metus.
+        </p>
+        <p>
+        Donec neque magna, consequat non imperdiet in, accumsan et dui. Donec non nisi sem, laoreet porttitor justo. Vivamus a neque et nisl tempor malesuada egestas et augue. Etiam sed sem id dui placerat aliquam vel eu quam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed eget lobortis magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla id lacus lacus. Etiam elementum vestibulum vestibulum. Praesent at tortor nunc, non mollis enim. Sed vitae felis nibh, consequat sollicitudin arcu. Vestibulum volutpat, nunc non commodo varius, nunc libero venenatis lorem, ut vulputate ligula velit sodales purus. Maecenas quis nulla non mi tincidunt ornare. Quisque consectetur, ligula ut adipiscing pharetra, mi ante posuere lorem, et volutpat nibh augue a libero. Donec feugiat est non ligula hendrerit malesuada. Morbi convallis, sem ut rhoncus consequat, lacus metus euismod erat, ac varius ipsum nisl quis ante.
+        </p>
+      </div>
+      <div style="display: none;" class="autocomplete" id="autocomplete_choices"></div>
+      <div style="display: none;" class="autocomplete" id="alt_autocomplete_choices"></div>
+      <div class="spacingText">
+        <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla malesuada ultricies suscipit. Fusce dictum aliquet libero, non vestibulum felis pretium et. Suspendisse vitae arcu metus. Curabitur sit amet neque sit amet ligula semper elementum. Nunc ut dui sit amet felis laoreet ornare. Proin accumsan eros et risus hendrerit sed ultrices lectus rutrum. Ut sed elit non nibh ullamcorper molestie quis in enim. Curabitur ultrices feugiat elit, sodales laoreet sem dignissim et. Donec ornare arcu velit. In adipiscing, ipsum a ullamcorper rutrum, nisi mi semper magna, vel adipiscing sem mauris sit amet dolor. Nunc interdum, augue a blandit aliquam, dui est volutpat ipsum, eu sodales sapien mauris ut libero. Nullam laoreet pharetra ornare. Curabitur laoreet, neque a imperdiet faucibus, ipsum leo ullamcorper leo, id facilisis lectus leo vel urna. Sed vitae hendrerit mauris. Nulla viverra ligula sed mi consectetur dapibus.
+        </p>
+        <p>
+        Vestibulum interdum, elit vitae tincidunt auctor, massa dui ultrices risus, quis tristique metus libero at odio. Donec felis purus, adipiscing eget ultricies vel, placerat ac nulla. Fusce pellentesque nulla in mauris vestibulum fermentum ac at metus. Praesent convallis urna at ligula posuere laoreet. Nam et dui nec dolor feugiat consectetur. Suspendisse pharetra vestibulum egestas. Vestibulum non dolor id libero adipiscing feugiat at non turpis. Suspendisse elit massa, vehicula sit amet porta cursus, laoreet ac massa. Quisque et enim tellus. Nunc tincidunt varius diam ut scelerisque. Maecenas sit amet lacus enim, vitae imperdiet urna. Morbi vitae augue imperdiet ante aliquam porta et et sem. Sed non lorem quis diam pellentesque accumsan in sit amet metus.
+        </p>
+      </div>
+    </div>
+    <script>
+      document.observe( 'dom:loaded',function(){
+       /* ---------------------------- */
+       $('dataList1').datalist(states_json,{ noButton:true },{ width: '250px' });
+       /* ---------------------------- */
+       $('dataList2').datalist(states_json,{ minChars:4,disableButtonForIE: [6] },{ width: '250px',height:'250px' });
+       /* ---------------------------- */
+       $('dataList3').datalist(scac_name_json,{},{ width: '250px',height:'150px' });
+       /* ---------------------------- */
+       $('dataList4').datalist(scac_name_json,{ IE6Shim:true,update: 'alt_autocomplete_choices' },{ width: '250px',height:'150px',offsetLeft:-300 });
+       /* ---------------------------- */
+       DatalistMouseWheel.on('alt_autocomplete_choices');
+      });
+    </script>
+  </body>
+</html>
