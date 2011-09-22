@@ -19,7 +19,7 @@ var Datalist = Class.create( Autocompleter.Local.prototype , {
     // baseInitialize is from controls.js
     this.baseInitialize(element, update, options);
     this.callback = options.callback || function(ret,element){ element.value = ret.inside };
-    this.ieVersion = parseFloat(navigator.appVersion.split(';')[1].strip().split(' ')[1]);
+    this.ieVersion = Prototype.Browser.IE ? parseFloat(navigator.appVersion.split(';')[1].strip().split(' ')[1]) : false;
     this.styles = Object.extend( { width: '200px',height: '250px' }, updateStyles);
     if(!this.options.noButton){
       // You can pass the exact button id in or it is assumed
