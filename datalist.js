@@ -178,7 +178,7 @@ var DataListHelper = {
     var delta = event.memo.delta;
     var up = delta > 0 ? true : false;
     var abs = Math.abs(delta);
-    var t = this.cumulativeScrollOffset().last();
+    var t = this.cumulativeScrollOffset()[1];
     var incr = 20 * abs;
     this.scrollTop = up ? t - incr : t + incr;
   }
